@@ -17,13 +17,3 @@ resource "google_sourcerepo_repository" "gcs_to_gbq" {
 output "git_gcs_to_gbq" {
   value = "${google_sourcerepo_repository.gcs_to_gbq.url}"
 }
-
-resource "google_sourcerepo_repository" "webhook" {
-  name = "${var.package}-webhook"
-
-  depends_on = [google_project_service.repository]
-}
-
-output "git_webhook" {
-  value = "${google_sourcerepo_repository.webhook.url}"
-}

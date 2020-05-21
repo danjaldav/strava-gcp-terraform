@@ -7,7 +7,7 @@ resource "google_cloudfunctions_function" "webhook" {
   trigger_http = true
   timeout = 180
   source_repository {
-    url = "https://source.developers.google.com/projects/${var.project}/repos/${google_sourcerepo_repository.webhook.name}/moveable-aliases/master/paths/"
+    url = "https://source.developers.google.com/projects/${var.project}/repos/${var.webhook_repo_name}/moveable-aliases/master/paths/"
   }
 }
 

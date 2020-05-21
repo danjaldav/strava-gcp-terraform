@@ -2,7 +2,7 @@ resource "google_cloudbuild_trigger" "webhook" {
   name = "${var.package}-webhook"
 
   trigger_template {
-    repo_name = google_sourcerepo_repository.webhook.name
+    repo_name = var.webhook_repo_name
     branch_name = ".*"
   }
 
