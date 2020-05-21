@@ -2,7 +2,7 @@ resource "google_cloudfunctions_function" "webhook" {
   name = "${var.package}-webhook"
   available_memory_mb = 128
   runtime = "python37"
-  entry_point = "receive"
+  entry_point = "index"
 
   trigger_http = true
   timeout = 180
