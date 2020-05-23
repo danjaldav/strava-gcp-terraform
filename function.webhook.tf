@@ -7,7 +7,7 @@ resource "google_cloudfunctions_function" "webhook" {
   trigger_http = true
   timeout = 180
   source_repository {
-    url = "https://source.developers.google.com/projects/${var.project}/repos/${var.webhook_repo_name}/moveable-aliases/master/paths/"
+    url = var.webhook_repo_url
   }
 }
 
@@ -20,7 +20,7 @@ resource "google_cloudfunctions_function_iam_member" "invoker" {
   role   = "roles/cloudfunctions.invoker"
   member = "allUsers"
 
-  depends_on = [google_project_service.cloudfunctions]
+  depends_on = [google_project_service.cloudfunctions, google_project_service.sourcerepo]
 }
 
 output "webhook_url" {

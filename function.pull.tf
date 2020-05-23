@@ -3,7 +3,7 @@ resource "google_cloudfunctions_function" "pull" {
   runtime = "python37"
   available_memory_mb = 128
   source_repository {
-    url = "https://source.developers.google.com/projects/${var.project}/repos/${google_sourcerepo_repository.pull.name}/moveable-aliases/master/paths/"
+    url = var.pull_repo_url
   }
   event_trigger {
     event_type = "providers/cloud.pubsub/eventTypes/topic.publish"
@@ -21,5 +21,5 @@ resource "google_cloudfunctions_function" "pull" {
     package = "${var.package}"
   }
 
-  depends_on = [google_project_service.cloudfunctions]
+  depends_on = [google_project_service.cloudfunctions, google_project_service.sourcerepo]
 }

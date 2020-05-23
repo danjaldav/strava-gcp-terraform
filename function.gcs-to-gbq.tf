@@ -3,7 +3,7 @@ resource "google_cloudfunctions_function" "gcs_to_gbq" {
   runtime = "python37"
   available_memory_mb = 128
   source_repository {
-    url = "https://source.developers.google.com/projects/${var.project}/repos/${google_sourcerepo_repository.gcs_to_gbq.name}/moveable-aliases/master/paths/"
+    url = var.gcs_to_gcp_repo_url
   }
   event_trigger {
     event_type = "google.storage.object.finalize"
@@ -21,5 +21,5 @@ resource "google_cloudfunctions_function" "gcs_to_gbq" {
     package = "${var.package}"
   }
 
-  depends_on = [google_project_service.cloudfunctions]
+  depends_on = [google_project_service.cloudfunctions, google_project_service.sourcerepo]
 }

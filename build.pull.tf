@@ -2,7 +2,7 @@ resource "google_cloudbuild_trigger" "pull" {
   name = "${var.package}-pull"
 
   trigger_template {
-    repo_name = google_sourcerepo_repository.pull.name
+    repo_name = var.pull_repo_url
     branch_name = ".*"
   }
 
