@@ -9,6 +9,10 @@ resource "google_cloudfunctions_function" "webhook" {
   source_repository {
     url = var.webhook_repo_url
   }
+
+  environment_variables = {
+    VERIFY_TOKEN = var.verify_token
+  }
 }
 
 # IAM entry for all users to invoke the function

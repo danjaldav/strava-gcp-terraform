@@ -12,10 +12,10 @@ resource "google_secret_manager_secret" "access_token" {
   }
 }
 
-resource "google_secret_manager_secret" "webhook_verify_token" {
+resource "google_secret_manager_secret" "subscription_id" {
   provider = google-beta
 
-  secret_id = "STRAVA_VERIFY_TOKEN"
+  secret_id = "STRAVA_SUBSCRIPTION_ID"
 
   labels = {
     package = var.package
